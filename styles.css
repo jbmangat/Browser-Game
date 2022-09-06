@@ -1,3 +1,13 @@
 body {
-    background-color: cornflowerblue;
+    background-color: #01685f;
+    text-align: center;
+}
+
+legend {
+    border: 2px solid black;
+}
+#submit {
+    background-color: black;
+    color: aliceblue;
+    border-radius: 10px;
 }
