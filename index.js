@@ -1,5 +1,16 @@
 // add eventlistener? to change and display next question
 //get and store the answer that the user chooses
+let numClicks = 0
+
+
+let questions = [
+    {question: 'Question 1', choices: ['apple', "organge", "pear" ], },
+    {question: "Question 2", choices:['red', "yellow", "purple"], labelChoices: ['apple', 'orange', 'pear']},
+    {question: 'Question 3', choices: ['1','2','3'], labelChoices: ['1','2','3']},
+    {question: 'Question 4', choices: ['1','2','3'], labelChoices: ['1','2','3']},
+    {question: 'Question 5', choices: ['1','2','3'], labelChoices: ['1','2','3']}
+]
+
 function submitClick(){
     document.getElementById('submit').addEventListener('click', function(event){
     
@@ -9,48 +20,48 @@ function submitClick(){
         function selectedAnswer(){
             for(i=0; i < allAnswers.length; i++){
                 if(allAnswers[i].checked){
-                    console.log(allAnswers[i].value)
+                    // console.log(allAnswers[i].value)
                     return allAnswers[i].value
                 }
             } 
         }
-        selectedAnswer()
         
-        function changeQuestion(question, choice1, labelChoice1, choice2, labelChoice2, choice3, labelChoice3){
+        
+        function changeQuestion(question, choice1, choice2, choice3, labelChoice1, labelChoice2, labelChoice3){
             document.getElementById('question').innerHTML = question
             document.getElementById('answer1').setAttribute("value", choice1)
-            document.getElementById('label1').innerHTML = labelChoice1
             document.getElementById('answer2').setAttribute("value", choice2)
-            document.getElementById('label2').innerHTML = labelChoice2
             document.getElementById('answer3').setAttribute("value", choice3)
+            document.getElementById('label1').innerHTML = labelChoice1
+            document.getElementById('label2').innerHTML = labelChoice2
             document.getElementById('label3').innerHTML = labelChoice3
         }
-        
-        
-        let numClicks = []
-        function clickCount(){
-            numClicks.push(1)
-            console.log(numClicks)
-        }
-        clickCount()
-        
 
-        function nextQuestion(){
-            let questionsAndAnswers = changeQuestion('Question 1',2,2,2,2,2,4)
-            if(document.getElementById('question').innerHTML == 'Question 1'){
-                let questionsAndAnswers = changeQuestion('Question 2')
-            }if(document.getElementById('question').innerHTML == 'Question 2'){
-                let questionsAndAnswers = changeQuestion('Question 3')
-            }
+        function clickCount(){
+            numClicks += 1
             
         }
+        function nextQuestion(){    
+            for(i=0; i<questions.length; i++){
+                if(document.getElementById('question').innerHTML == questions[i].question){
+                    return changeQuestion(
+                        questions[numClicks].question, 
+                        questions[numClicks].choices[0],
+                        questions[numClicks].choices[1],
+                        questions[numClicks].choices[2],
+                        questions[numClicks].labelChoices[0],
+                        questions[numClicks].labelChoices[1],
+                        questions[numClicks].labelChoices[2]
+                    )
+                }
+            }
+        }
+        
+        
+        
+        selectedAnswer()
+        clickCount()
         nextQuestion()    
-        
-        
-            
-        
-        
-        
     })
 }
 submitClick()
