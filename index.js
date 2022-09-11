@@ -2,19 +2,20 @@
 //get and store the answer that the user chooses
 let numClicks = 0
 
+let score = 0
 
 let questions = [
-    {question: 'Question 1', choices: ['apple', "organge", "pear" ], },
-    {question: "Question 2", choices:['red', "yellow", "purple"], labelChoices: ['apple', 'orange', 'pear']},
-    {question: 'Question 3', choices: ['1','2','3'], labelChoices: ['1','2','3']},
-    {question: 'Question 4', choices: ['1','2','3'], labelChoices: ['1','2','3']},
-    {question: 'Question 5', choices: ['1','2','3'], labelChoices: ['1','2','3']}
+    {question: 'Question 1', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer' ], labelChoices: ['answer1', 'answer2', 'answer3']},
+    {question: "Question 2", choices:['incorrectAnswer', 'correctAnswer', 'incorrectAnswer'], labelChoices: ['apple', 'orange', 'pear']},
+    {question: 'Question 3', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['1v','2','3']},
+    {question: 'Question 4', choices: ['incorrectAnswer', 'incorrectAnswer', 'correctAnswer'], labelChoices: ['1vv','2','3']},
+    {question: 'Question 5', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['1vvv','2','3']}
 ]
 
 function submitClick(){
     document.getElementById('submit').addEventListener('click', function(event){
-    
         event.preventDefault();
+        // returns which answer the user selected
         let allAnswers = document.getElementsByName('answer');
         // console.log(allAnswers)
         function selectedAnswer(){
@@ -25,8 +26,19 @@ function submitClick(){
                 }
             } 
         }
-        
-        
+        //  checks whether answer is correct or incorrect
+        function checkAnswer(){
+            if(selectedAnswer() == 'correctAnswer'){
+                console.log('correct answer')
+                score += 1
+                console.log(score)
+            }else{
+                console.log('incorrect answer')
+                console.log(score)
+            }
+        }
+
+        // for changing the text content and values of the question
         function changeQuestion(question, choice1, choice2, choice3, labelChoice1, labelChoice2, labelChoice3){
             document.getElementById('question').innerHTML = question
             document.getElementById('answer1').setAttribute("value", choice1)
@@ -39,8 +51,8 @@ function submitClick(){
 
         function clickCount(){
             numClicks += 1
-            
         }
+        // getting arguements and passing them into changeQuestion
         function nextQuestion(){    
             for(i=0; i<questions.length; i++){
                 if(document.getElementById('question').innerHTML == questions[i].question){
@@ -60,13 +72,14 @@ function submitClick(){
         
         
         selectedAnswer()
+        checkAnswer()
         clickCount()
         nextQuestion()    
     })
 }
 submitClick()
 
-
+// console.log(typeof document.getElementById('question').innerHTML)
 
 
 // change the questions using a for loop of numbers for each question. 
