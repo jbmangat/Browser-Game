@@ -5,17 +5,20 @@ let numClicks = 0
 let score = 0
 
 let questions = [
-    {question: 'Question 1', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer' ], labelChoices: ['answer1', 'answer2', 'answer3'], qNumber: 1},
-    {question: "Question 2", choices:['incorrectAnswer', 'correctAnswer', 'incorrectAnswer'], labelChoices: ['apple', 'orange', 'pear'], qNumber: 2},
-    {question: 'Question 3', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['1v','2','3'], qNumber: 3},
-    {question: 'Question 4', choices: ['incorrectAnswer', 'incorrectAnswer', 'correctAnswer'], labelChoices: ['1vv','2','3'], qNumber: 4},
-    {question: 'Question 5', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['1vvv','2','3'], qNumber: 5}
+    {question: 'Question 1', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer' ], labelChoices: ['answer1', 'answer2', 'answer3']},
+    {question: 'Question 2', choices:['incorrectAnswer', 'correctAnswer', 'incorrectAnswer'], labelChoices: ['apple', 'orange', 'pear']},
+    {question: 'Question 3', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['1v','2','3']},
+    {question: 'Question 4', choices: ['incorrectAnswer', 'incorrectAnswer', 'correctAnswer'], labelChoices: ['1vv','2','3']},
+    {question: 'Question 5', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['1vvv','2','3']},
+    {question: 'Final Question', choices: ['a', 'b', 'c'], labelChoices: ['', '', '']},
+    {question: 'Results', choices: ['a', 'b', 'c'], labelChoices: ['', '', '']}
 ]
 
 // console.log(questions[4].qNumber == questions.length)
 
 function submitClick(){
     document.getElementById('submit').addEventListener('click', function(event){
+        
         event.preventDefault();
         // returns which answer the user selected
         let allAnswers = document.getElementsByName('answer');
@@ -28,14 +31,13 @@ function submitClick(){
                 }
             } 
         }
-        //  checks whether answer is correct or incorrect and changes users score
+        //  checks whether answer is correct or incorrect and update the score for the user
         function checkAnswer(){
             if(selectedAnswer() == 'correctAnswer'){
                 console.log('correct answer')
-                score += 1 
-                // console.log(score)
+                score += 1
                 document.getElementById('score').innerHTML = score
-            }else{
+            }else if(selectedAnswer() == 'incorrectAnswer'){
                 console.log('incorrect answer')
                 // console.log(score)
             }
@@ -48,6 +50,8 @@ function submitClick(){
                 }
             }
         }
+        
+        
 
         // for changing the text content and values of the question
         function changeQuestion(question, choice1, choice2, choice3, labelChoice1, labelChoice2, labelChoice3){
@@ -63,6 +67,7 @@ function submitClick(){
         function clickCount(){
             numClicks += 1
         }
+        
         // getting arguements and passing them into changeQuestion
         function nextQuestion(){    
             for(i=0; i<questions.length; i++){
@@ -80,13 +85,27 @@ function submitClick(){
             }
         }
         
+        function displayResults(){
+            if(document.getElementById('question').innerHTML == 'Results' && score >= 3){
+                document.querySelectorAll('.duringGame').setAttribute('class', 'endGame')
+                document.querySelector('h2').innerHTML = `You got ${score} questions correct`
+                document.querySelector('h3').innerHTML = "You win!"
+            }else if(document.getElementById('question').innerHTML == 'Results' && score < 3){
+                document.querySelectorAll('.duringGame').setAttribute('class', 'endGame')
+                document.querySelector('h2').innerHTML = `You got ${score} questions correct`
+                document.querySelector('h3').innerHTML = "You lose!" 
+            }else if(document.getElementById('question').innerHTML == 'restarting'){
+                location.reload()
+            }
+        }
         
         
         selectedAnswer()
         checkAnswer()
         results()
         clickCount()
-        nextQuestion()    
+        nextQuestion()
+        displayResults()   
     })
 }
 submitClick()

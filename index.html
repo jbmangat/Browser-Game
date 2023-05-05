@@ -12,28 +12,28 @@
     <!-- divs with inputs and labels for each answer choice--> 
     <main>
         <h1>Trivia Game</h1>
+        <h2>Get 7/10 questions right to win!</h2>
         <div>
-            <p>Score<p id="score">0</p></p>
+            <h3 id="winText">Score</h3>
+            <p id="score">0</p>
         </div>
-        <div>
-            <form action="">
-                <fieldset>
-                    <legend id="question">Question 1</legend>
-                    <div>
-                        <input type="radio" id="answer1" name="answer" value="correctAnswer">
-                        <label for="answer1" id="label1">answer 1</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="answer2" name="answer" value="incorrectAnswer">
-                        <label for="answer2" id="label2">answer 2</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="answer3" name="answer" value="incorrectAnswer">
-                        <label for="answer3" id="label3">answer 3</label>
-                    </div>
-                </fieldset>
-                <button id="submit">Submit</button>
+        <div id="gameDiv">
+            <form action="" id="game">
+                <legend id="question">Question 1</legend>
+                <div class="duringGame">
+                    <input type="radio" id="answer1" name="answer" value="correctAnswer">
+                    <label for="answer1" id="label1">answer 1</label>
+                </div>
+                <div class="duringGame">
+                    <input type="radio" id="answer2" name="answer" value="incorrectAnswer">
+                    <label for="answer2" id="label2">answer 2</label>
+                </div>
+                <div class="duringGame">
+                    <input type="radio" id="answer3" name="answer" value="incorrectAnswer">
+                    <label for="answer3" id="label3">answer 3</label>
+                </div>
             </form>
+            <button id="submit">Submit</button>
         </div> 
     </main> 
 </body> 
