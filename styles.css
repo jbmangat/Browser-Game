@@ -1,13 +1,36 @@
 body {
-    background-color: #01685f;
+    background-color: #3de8f8;
     text-align: center;
 }
  
 legend {
-    border: 2px solid black;
+    
+    text-shadow: 1px 1px #37cbd9;
+    
 }
+
+/* #gameDiv {
+    
+} */
+
 #submit {
     background-color: black;
     color: aliceblue;
     border-radius: 10px;
+}
+.results {
+    display: none;
+}
+
+input {
+    cursor: pointer;
+    
+}
+form {
+    
+    background-color: aquamarine;
+    border-radius: 10px;
+}
+.endGame{
+    display: none;
 }
