@@ -3,3 +3,5 @@ The idea behind making this was to make a trivia game where the questions and an
 
 How to play:
 Select an answer by clicking the icon and then press submit
+
+Score at least 7 points to win
