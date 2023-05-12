@@ -1,20 +1,19 @@
-// add eventlistener? to change and display next question
-//get and store the answer that the user chooses
 let numClicks = 0
-
 let score = 0
-
 let questions = [
-    {question: 'Question 1', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer' ], labelChoices: ['answer1', 'answer2', 'answer3']},
-    {question: 'Question 2', choices:['incorrectAnswer', 'correctAnswer', 'incorrectAnswer'], labelChoices: ['apple', 'orange', 'pear']},
-    {question: 'Question 3', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['1v','2','3']},
-    {question: 'Question 4', choices: ['incorrectAnswer', 'incorrectAnswer', 'correctAnswer'], labelChoices: ['1vv','2','3']},
-    {question: 'Question 5', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['1vvv','2','3']},
-    {question: 'Final Question', choices: ['a', 'b', 'c'], labelChoices: ['', '', '']},
-    {question: 'Results', choices: ['a', 'b', 'c'], labelChoices: ['', '', '']}
+    {question: "What is May's birthstone?", questionNum: 'Question 1', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['answer1', 'answer2', 'answer3']},
+    {question: 'What kind of fruit is Florida known for?', questionNum: 'Question 2', choices: ['incorrectAnswer', 'correctAnswer', 'incorrectAnswer'], labelChoices: ['apple', 'orange', 'pear']},
+    {question: 'Which U.S. President served more than two terms?', questionNum: 'Question 3', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['Franklin D. Roosevelt','Ulysses S. Grant','John Adams']},
+    {question: 'Who wrote 1984?', questionNum: 'Question 4', choices: ['incorrectAnswer', 'incorrectAnswer', 'correctAnswer'], labelChoices: ['Harper Lee','J. D. Salinger ','George Orwell']},
+    {question: 'When did the Berlin Wall fall?', questionNum: 'Question 5', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['1989','1991','1997']},
+    {question: 'What is the smallest country in the world?', questionNum: 'Question 6', choices: ['incorrectAnswer', 'incorrectAnswer', 'correctAnswer'], labelChoices: ['Monaco','Liechtenstein','Vatican City']},
+    {question: 'Who painted "The Starry Night"?', questionNum: 'Question 7', choices: ['incorrectAnswer', 'correctAnswer', 'incorrectAnswer'], labelChoices: ['Leonardo da Vinci','Vincent van Gogh','Pablo Picasso']},
+    {question: 'Who directed "Jurassic Park"?', questionNum: 'Question 8', choices: ['incorrectAnswer', 'correctAnswer', 'incorrectAnswer'], labelChoices: ['James Cameron','Steven Spielberg','George Lucas']},
+    {question: 'Who is the lead singer of U2?', questionNum: 'Question 9', choices: ['incorrectAnswer', 'incorrectAnswer', 'correctAnswer'], labelChoices: ['Bruce Springsteen','Sting','Bono']},
+    {question: 'What is the largest organ in the human body?', questionNum: 'Question 10', choices: ['correctAnswer', 'incorrectAnswer', 'incorrectAnswer'], labelChoices: ['Skin', 'Brain', 'Lung']},
+    {question: 'Results', choices: ['', '', ''], labelChoices: ['', '', '']},
+    {question: 'restarting', choices: ['', '', ''], labelChoices: ['', '', '']},
 ]
-
-// console.log(questions[4].qNumber == questions.length)
 
 function submitClick(){
     document.getElementById('submit').addEventListener('click', function(event){
@@ -22,15 +21,15 @@ function submitClick(){
         event.preventDefault();
         // returns which answer the user selected
         let allAnswers = document.getElementsByName('answer');
-        // console.log(allAnswers)
         function selectedAnswer(){
             for(i=0; i < allAnswers.length; i++){
                 if(allAnswers[i].checked){
-                    // console.log(allAnswers[i].value)
+                    
                     return allAnswers[i].value
                 }
             } 
         }
+
         //  checks whether answer is correct or incorrect and update the score for the user
         function checkAnswer(){
             if(selectedAnswer() == 'correctAnswer'){
@@ -42,16 +41,6 @@ function submitClick(){
                 // console.log(score)
             }
         }
-
-        function results(){
-            for(i=1; i<questions.length; i++){
-                if(questions[i].qNumber == questions.length){
-                    console.log('amongus')
-                }
-            }
-        }
-        
-        
 
         // for changing the text content and values of the question
         function changeQuestion(question, choice1, choice2, choice3, labelChoice1, labelChoice2, labelChoice3){
@@ -71,7 +60,7 @@ function submitClick(){
         // getting arguements and passing them into changeQuestion
         function nextQuestion(){    
             for(i=0; i<questions.length; i++){
-                if(document.getElementById('question').innerHTML == questions[i].question){
+                if(document.getElementById('questionNum').innerHTML == questions[i].questionNum){
                     return changeQuestion(
                         questions[numClicks].question, 
                         questions[numClicks].choices[0],
@@ -84,14 +73,17 @@ function submitClick(){
                 }
             }
         }
-        
+
+        // getGame and num need better names
         function displayResults(){
-            if(document.getElementById('question').innerHTML == 'Results' && score >= 3){
-                document.querySelectorAll('.duringGame').setAttribute('class', 'endGame')
+            if(document.getElementById('question').innerHTML == 'Results' && score >= 7){
+                let getGame = [...document.querySelectorAll('.duringGame')]
+                getGame.map((num) => num.setAttribute('class', 'endGame'))
                 document.querySelector('h2').innerHTML = `You got ${score} questions correct`
                 document.querySelector('h3').innerHTML = "You win!"
-            }else if(document.getElementById('question').innerHTML == 'Results' && score < 3){
-                document.querySelectorAll('.duringGame').setAttribute('class', 'endGame')
+            }else if(document.getElementById('question').innerHTML == 'Results' && score < 7){
+                let getGame = [...document.querySelectorAll('.duringGame')]
+                getGame.map((num) => num.setAttribute('class', 'endGame'))
                 document.querySelector('h2').innerHTML = `You got ${score} questions correct`
                 document.querySelector('h3').innerHTML = "You lose!" 
             }else if(document.getElementById('question').innerHTML == 'restarting'){
@@ -102,7 +94,6 @@ function submitClick(){
         
         selectedAnswer()
         checkAnswer()
-        results()
         clickCount()
         nextQuestion()
         displayResults()   
@@ -110,13 +101,4 @@ function submitClick(){
 }
 submitClick()
 
-// console.log(typeof document.getElementById('question').innerHTML)
-
-
-// change the questions using a for loop of numbers for each question. 
-// start with 3 questions
-// everytime submit is clicked it changes which call of the function and which parameters its using
-// empty array to log evertime answer is submitted? 
-// if statement to check whether answer logged or not and push into array
-// add class of correct-answer for correct answer else not correct
 

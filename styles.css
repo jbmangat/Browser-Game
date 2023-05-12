@@ -1,13 +1,13 @@
 body {
-    background-color: #3de8f8;
+    background-color: #448d94;
     text-align: center;
 }
  
-legend {
+/* legend {
     
-    text-shadow: 1px 1px #37cbd9;
+    text-shadow: 1px 1px #0b363a;
     
-}
+} */
 
 /* #gameDiv {
     
@@ -28,9 +28,13 @@ input {
 }
 form {
     
-    background-color: aquamarine;
+    background-color: rgb(90, 163, 139);
     border-radius: 10px;
 }
 .endGame{
+    display: none;
+}
+
+#endgame{
     display: none;
 }
