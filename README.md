@@ -5,3 +5,6 @@ How to play:
 Select an answer by clicking the icon and then press submit
 
 Score at least 7 points to win
+
+Play here: 
+https://jbmangat.github.io/Browser-Game/
