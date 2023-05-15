@@ -1,40 +1,30 @@
 body {
-    background-color: #448d94;
+    background-color: #BFACB5;
     text-align: center;
+    color: #406E8E;
+    font-family:'Courier New', Courier, monospace;
 }
- 
-/* legend {
-    
-    text-shadow: 1px 1px #0b363a;
-    
-} */
 
-/* #gameDiv {
+main {
+    border: 3px solid #406E8E;
+    border-radius: 10px;
+    background-color: #CBF7ED;
+    margin: 100px 200px;
     
-} */
+}
 
 #submit {
-    background-color: black;
-    color: aliceblue;
+    background-color: #BFACB5;
+    color: #1b3a50;
     border-radius: 10px;
-}
-.results {
-    display: none;
+    margin: 15px 0px;
+    border-color: #BFACB5;
 }
 
 input {
     cursor: pointer;
     
 }
-form {
-    
-    background-color: rgb(90, 163, 139);
-    border-radius: 10px;
-}
 .endGame{
-    display: none;
-}
-
-#endgame{
     display: none;
 }

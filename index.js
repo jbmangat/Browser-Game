@@ -38,7 +38,6 @@ function submitClick(){
                 document.getElementById('score').innerHTML = score
             }else if(selectedAnswer() == 'incorrectAnswer'){
                 console.log('incorrect answer')
-                // console.log(score)
             }
         }
 
@@ -74,7 +73,6 @@ function submitClick(){
             }
         }
 
-        // getGame and num need better names
         function displayResults(){
             if(document.getElementById('question').innerHTML == 'Results' && score >= 7){
                 let getGame = [...document.querySelectorAll('.duringGame')]
