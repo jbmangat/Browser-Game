@@ -1,0 +1,56 @@
+body {
+  background-color: #BFACB5;
+  color: #406E8E;
+  padding: 100px 0px;
+}
+body main {
+  border: 3px #406E8E;
+  border-radius: 10px;
+  border-style: solid;
+  background-color: #CBF7ED;
+  width: 40%;
+  margin: auto;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+}
+
+.duringGame {
+  padding: 2px 0px;
+}
+.duringGame label {
+  cursor: pointer;
+}
+.duringGame label:hover {
+  background-color: #BFACB5;
+  color: #406E8E;
+  padding: 1px 5px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.duringGame input {
+  display: none;
+}
+.duringGame input:checked + label {
+  background-color: #BFACB5;
+  color: #406E8E;
+  padding: 1px 5px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: 2px solid #406E8E;
+}
+
+#submit {
+  background-color: #BFACB5;
+  color: #406E8E;
+  border-radius: 10px;
+  margin: 10px 0px;
+  border-color: #BFACB5;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.endGame {
+  display: none;
+}
+
+/*# sourceMappingURL=styles.css.map */

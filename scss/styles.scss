@@ -1,0 +1,94 @@
+@import 'borders';
+@import 'colors';
+@import 'text';
+
+$primary-color: $faded-pink;
+$secondary-color: $light-blue;
+$tertiary-color: $dark-blue;
+$hide: none;
+$cursor-pointer: pointer;
+
+@mixin text {
+    font-family: $font;
+    text-align: center;
+}
+@mixin borders {
+    border-radius: $value;
+    border-style: $b-style;
+    @content;
+}
+
+@function halfIt($num){
+    @return calc($num / 2);
+}
+
+@function weirdOp($num){
+    @if($num == 0px){
+        @return $num + 1;
+    }@else{
+        @return $num - 1;
+    }
+}
+
+@mixin labelStyle{
+    background-color: $primary-color;
+    color: $tertiary-color;
+    padding: weirdOp($zero) halfIt($value);
+    font-weight: $bold;
+    border-radius: $value;
+    @content;
+}
+
+
+body{
+    background-color: $primary-color;
+    color: $tertiary-color;
+    padding: 100px $zero;
+    main{
+        border: $b-thick $tertiary-color;
+        @include borders();  
+        background-color: $secondary-color;
+        width: $width;
+        margin: auto;
+        @include text()
+    }
+}
+
+.duringGame{
+    
+    label{
+        cursor: $cursor-pointer;
+        &:hover{
+            @include labelStyle() 
+        }
+    }
+    input{
+        display: $hide;
+        &:checked{
+            +label{
+                @include labelStyle(){
+                    border: weirdOp($b-thick) $b-style $tertiary-color;
+                }
+            }
+        }
+    }
+    padding: weirdOp($b-thick) $zero;
+    @if $hide == null {
+        @error '$hide not defined';
+    }
+}
+
+#submit{
+    background-color: $primary-color;
+    color: $tertiary-color;
+    border-radius: $value;
+    margin: $value $zero;
+    border-color: $primary-color;
+    font-weight: $bold;
+    cursor: $cursor-pointer;
+}
+
+.endGame{
+    display: $hide;
+}
+
